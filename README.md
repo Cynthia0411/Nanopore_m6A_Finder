@@ -3,7 +3,7 @@ in both coding region and poly(A) region of Nanopore DRS reads.
 
 We trained a XGBoost model and a Random Forest model using in vitro
 transcribed 5mers with As or with m6As. The trained models were saved
-in google drive.
+in google drive “https://drive.google.com/drive/folders/1w7Ff1Ay76DVXK-Mk_Mi9LF1csrQqcGgq?usp=drive_link”.
 
 The training data were saved as 81_1_1500_top.sam and 82_1_1500.sam.
 
