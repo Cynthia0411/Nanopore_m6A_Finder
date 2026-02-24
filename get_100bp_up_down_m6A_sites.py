@@ -12,13 +12,14 @@ def get_sequence_and_sites(fasta_file, bed_file, window=20):
     # Read original bed file
     original_bed = pd.read_csv(bed_file, sep='\t', header=None,
                              names=['chrom', 'start', 'end', 'name', 'score', 'strand'])
-    
     new_sites = []
     
     # Process each position in bed file
     for _, row in original_bed.iterrows():
         chrom = row['chrom']
         center = row['start']
+        strand = row['strand']
+        score = row['score']
         
         # Get sequence window around site
         window_start = max(0, center - window)
@@ -26,29 +27,31 @@ def get_sequence_and_sites(fasta_file, bed_file, window=20):
         seq = fasta.fetch(chrom, window_start, window_end)
         
         # Find A positions (+ strand)
-        for i, base in enumerate(seq):
-            if base.upper() == 'A':
-                abs_pos = window_start + i
-                new_sites.append({
-                    'chrom': chrom,
-                    'start': abs_pos,
-                    'end': abs_pos + 1,
-                    'name': 'A_site',
-                    'score': '.',
-                    'strand': '+'
-                })
+        if strand == "+":
+            for i, base in enumerate(seq):
+                if base.upper() == 'A':
+                    abs_pos = window_start + i
+                    new_sites.append({
+                        'chrom': chrom,
+                        'start': abs_pos,
+                        'end': abs_pos + 1,
+                        'name': 'A_site',
+                        'score': score,
+                        'strand': '+'
+                    })
                 
         # Find T positions (- strand)
-        for i, base in enumerate(seq):
-            if base.upper() == 'T':
-                abs_pos = window_start + i
-                new_sites.append({
-                    'chrom': chrom,
-                    'start': abs_pos,
-                    'end': abs_pos + 1,
-                    'name': 'T_site', 
-                    'score': '.',
-                    'strand': '-'
+        if strand == "-":
+            for i, base in enumerate(seq):
+                if base.upper() == 'T':
+                    abs_pos = window_start + i
+                    new_sites.append({
+                        'chrom': chrom,
+                        'start': abs_pos,
+                        'end': abs_pos + 1,
+                        'name': 'T_site', 
+                        'score': score,
+                        'strand': '-'
                 })
     
     # Convert new sites to DataFrame
@@ -67,8 +70,8 @@ def get_sequence_and_sites(fasta_file, bed_file, window=20):
 
 # Run the function
 fasta_file = "hg38.fa"  # Replace with your genome fasta file path
-bed_file = "union.bed"
-output_file = "combined_m6A_sites_union.bed"
+bed_file = "predicted_m6A_sites_WT3_KO2.bed"
+output_file = "combined_m6A_sites_WT3_KO2_20bp.bed"
 
 combined_sites = get_sequence_and_sites(fasta_file, bed_file)
 combined_sites.to_csv(output_file, sep='\t', header=False, index=False)

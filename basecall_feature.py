@@ -37,7 +37,7 @@ def onehotencoding(resultdf):
     
     # 处理序列的one-hot编码
     seqVec = np.zeros((len(seq), 20))
-    for i in range(len(seq)):
+    for i in range(len(seq)): 
         seqList = list(seq[i])
         lineVector = []
         for j in range(5):
@@ -74,7 +74,7 @@ def savefile(resultdf, qualVec, seqVec, readname):
     for i in range(len(qualVec)):
         # 构建输出行
         # 1. 添加标签 (-1 for 81, 1 for 82)
-        label = "-1" if readname == 'feature_with_1_A_81' else "1"
+        label = "-1" if readname == 'feature_filtered_AAAAA_level_70_HEK293T-KO1' else "1"
         
         # 2. 添加one-hot编码的序列特征
         seq_features = ",".join(str(x) for x in seqVec[i])
@@ -92,20 +92,20 @@ def savefile(resultdf, qualVec, seqVec, readname):
 
 def main():
     # 读取81和82的数据
-    resultdf1 = pd.read_csv("81_1_5mers_with_1_A_features.tsv", sep="\t")
-    resultdf2 = pd.read_csv("82_1_5mers_with_1_A_features.tsv", sep="\t")
+    resultdf1 = pd.read_csv("filtered_AAAAA_level_70_HEK293T-Mettl3-KO-rep1.tsv", sep="\t")
+    resultdf2 = pd.read_csv("AAAAA_level_70_HEK293T-WT-rep1.tsv", sep="\t")
     
     # 分别处理两个文件
     seqVec1, qualVec1 = onehotencoding(resultdf1)
     seqVec2, qualVec2 = onehotencoding(resultdf2)
     
     # 保存处理后的文件
-    savefile(resultdf1, qualVec1, seqVec1, 'feature_with_1_A_81')
-    savefile(resultdf2, qualVec2, seqVec2, 'feature_with_1_A_82')
+    savefile(resultdf1, qualVec1, seqVec1, 'feature_filtered_AAAAA_level_70_HEK293T-KO1')
+    savefile(resultdf2, qualVec2, seqVec2, 'feature_AAAAA_level_70_HEK293T-WT1')
     
     # 合并两个文件
-    resultdf = combind2files('feature_with_1_A_81.csv', 'feature_with_1_A_82.csv')
-    resultdf.to_csv('feature_with_1_A_81_82.csv', sep=',', index=False, header=False)
+    resultdf = combind2files('feature_filtered_AAAAA_level_70_HEK293T-KO1.csv', 'feature_AAAAA_level_70_HEK293T-WT1.csv')
+    resultdf.to_csv('feature_AAAAA_level_70_HEK293T-WT1-filtered-KO1.csv', sep=',', index=False, header=False)
 
 if __name__=='__main__':
     main()

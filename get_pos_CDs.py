@@ -3,12 +3,11 @@ import numpy
 import os
 import pandas
 
-#start pos start in number1,not0.
 kmerLength = 5
 #filedir = 'D:/old/data/bioinformatics/VSG_mapped_reads_with_polyA/7656646f-042e-449a-aa0e-747bf145e6be.fast5'
-inputsamfile="./mapped_reads.sam"                             
+inputsamfile="./mapped_reads_HEK293T-WT-rep3.sam"                             
 #inputsamfile=str(snakemake.input)
-outputtsvfile= "./CDs_pos.tsv"
+outputtsvfile= "./CDs_pos_HEK293T_WT_rep3.tsv"
 #outputtsvfile=str(snakemake.output)
 def getStart_End(inputsam):
     if os.path.exists(outputtsvfile):
@@ -27,7 +26,7 @@ def getStart_End(inputsam):
                 pos_start = 0
                 cigar = line_list[5]
 #                pos_start = len(seq) - int(list(re.finditer('(\d+)S',cigar))[-1].group(1))
-                s_re = list(re.finditer('(\d+)S',cigar))
+                s_re = list(re.finditer(r'(\d+)S',cigar))
                 if len(s_re) != 0:
                     if flag == "0":
                         pos_end = len(seq) - int(s_re[-1].group(1))-1

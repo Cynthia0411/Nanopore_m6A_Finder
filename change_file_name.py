@@ -11,7 +11,7 @@ def change_filename(filedir):
         if portion[1] == '.fast5':
             old_filename = filedir+'/'+filename
             f = h5py.File(old_filename)
-            newname = filedir+"/"+str(f['Analyses']['Basecall_1D_001']['BaseCalled_template']['Fastq'][()]).split(' ')[0][3:]+'.fast5'
+            newname = filedir+"/"+str(f['Analyses']['Basecall_1D_000']['BaseCalled_template']['Fastq'][()]).split(' ')[0][3:]+'.fast5'
             print(newname)
             f.close()
             os.rename(old_filename,newname)
@@ -56,7 +56,7 @@ def process_files(filedir,ref_file):
 
 #process_files('./guppy_1368282_1/workspace','./select_reads/82_1_5mers_withA_order.tsv')
 #change_filename(str(snakemake.input))
-change_filename("./guppy_fast5/workspace")
+change_filename("./HEK293T-Mettl3-KO-rep2-fast5/")
 
 
 

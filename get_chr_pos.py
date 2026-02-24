@@ -3,9 +3,9 @@ import pandas as pd
 from tqdm import tqdm
 from io import StringIO  # 导入 io 模块中的 StringIO 类
 
-input_sam_tsv = "mapped_reads_WT.tsv"
-input_read_pos = "m6A_pos_in_reads_xgb_0.7_HMEC_WT.csv"
-output_dir = "m6A_pos_on_genome_xgb_0.7_WT.tsv"
+input_sam_tsv = "mapped_reads_HEK293T-WT-rep3.tsv"
+input_read_pos = "m6A_pos_in_reads_xgb_HEK293T_WT_rep3.csv"
+output_dir = "m6A_pos_on_genome_xgb_HEK293T_WT3.tsv"
 
 #csv.field_size_limit(1024 * 1024 * 1024)
 

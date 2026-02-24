@@ -125,11 +125,11 @@ def merge_files_outer(wt_file, ko_file, output_path, bed_output=None):
         print(f"Error during merging: {str(e)}")
 
 # Usage
-wt_file = "intersections_m6A_sites_xgb_0.7_WT.tsv"
-ko_file = "intersections_m6A_sites_xgb_0.7_ALKBH5.tsv"
+wt_file = "intersections_m6A_sites_xgb_HEK293T_WT1.tsv"
+ko_file = "intersections_m6A_sites_xgb_HEK293T_KO1.tsv"
 #output_path_outer = "merged_xgb_0.7_WT3_union_xgb_0.7_KO1.tsv"
-output_path = "merged_xgb_0.7_WT_ALKBH5.tsv"
-extracted_output = "extracted_xgb_0.7_WT.bed"
+output_path = "merged_xgb_WT1_KO1.tsv"
+extracted_output = "extracted_xgb_WT1.bed"
 #bed_output = "xgb_0.7_WT3_union_xgb_0.7_KO1.bed"
 #wt_file = "overlap_WT1_WT2_combined_1308.tsv"
 #ko_file = "overlap_sites_of_xgb_WT3_union_xgb_KO1_1308_combined.tsv"

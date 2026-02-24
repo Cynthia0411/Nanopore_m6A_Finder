@@ -3,12 +3,12 @@ import pandas as pd
 col_names_WT = ["Chromosome","Start","End","N1","N2","Flag","Coverage_WT", "N3", "N4", "N5"]
 col_names_KO = ["Chromosome","Start","End","N1","N2","Flag","Coverage_KO", "N3", "N4", "N5"]
 
-WT_df = pd.read_csv('WT_coverage_xgb_0.7_WT.txt', delimiter = "\t", header = None, names = col_names_WT)
-KO_df = pd.read_csv('ALKBH5_coverage_xgb_0.7_WT.txt', delimiter = "\t", header = None, names = col_names_KO)
+WT_df = pd.read_csv('WT3_coverage_xgb_WT3.txt', delimiter = "\t", header = None, names = col_names_WT)
+KO_df = pd.read_csv('KO2_coverage_xgb_WT3.txt', delimiter = "\t", header = None, names = col_names_KO)
 
 df_WT = WT_df[["Chromosome","End", "Flag", "Coverage_WT"]]
 df_KO = KO_df[["Chromosome","End", "Flag", "Coverage_KO"]]
-df = pd.read_csv('merged_xgb_0.7_WT_ALKBH5.tsv', sep = "\t")
+df = pd.read_csv('merged_xgb_WT3_KO2.tsv', sep = "\t")
 
 # Convert multiple columns to string
 columns_to_convert = ['Chromosome']
@@ -30,6 +30,6 @@ merged_df['m6A_level_WT'] = merged_df['count_reads_WT'] / (merged_df['Coverage_W
 merged_df['m6A_level_KO'] = merged_df['count_reads_KO'] / (merged_df['Coverage_KO'] + EPSILON)
 
 # Save the results
-merged_df.to_csv('merged_xgb_0.7_WT_ALKBH5_site_coverage.tsv', sep='\t', index=False)
+merged_df.to_csv('merged_xgb_WT3_KO2_site_coverage.tsv', sep='\t', index=False)
 
 print("Processing complete! Added m6A level columns to the output file.")

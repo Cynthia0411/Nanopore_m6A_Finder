@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # Input files
-SAM_FILE="ALKBH5_reads.sam"
-#FIXED_BED_FILE="extracted_weighted_WT1.bed"
-FIXED_BED_FILE="extracted_xgb_0.7_WT.bed"
-BAM_FILE="ALKBH5_reads.bam"
-SORTED_BAM_FILE="ALKBH5.sorted.bam"
-COVERAGE_FILE="ALKBH5_coverage_xgb_0.7_WT.txt"
+#SAM_FILE=".sam"
+FIXED_BED_FILE="extracted_xgb_WT3.bed"
+#FIXED_BED_FILE="extracted_xgb_0.7_WT.bed"
+#BAM_FILE=""
+SORTED_BAM_FILE="sorted_primary_mapped_HEK293T-Mettl3-KO-rep2.bam"
+COVERAGE_FILE="KO2_coverage_xgb_WT3.txt"
 
 # Convert SAM to BAM
-samtools view -S -b $SAM_FILE > $BAM_FILE
+#samtools view -S -b $SAM_FILE > $BAM_FILE
 
 # Sort BAM file
-samtools sort $BAM_FILE -o $SORTED_BAM_FILE
+#samtools sort $BAM_FILE -o $SORTED_BAM_FILE
 
 # Index the sorted BAM file
-samtools index $SORTED_BAM_FILE
+#samtools index $SORTED_BAM_FILE
 
 # Fix the BED file by adding placeholder columns
 #awk 'BEGIN{OFS="\t"} {print $1, $2, $3, ".", "0", $4}' $BED_FILE > $FIXED_BED_FILE

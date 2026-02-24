@@ -7,7 +7,7 @@ EPSILON = 1e-10  # Small number to avoid division by zero
 USE_WILCOXON = True  # Set to True to use Wilcoxon test, False for bootstrap
 
 # File paths
-INPUT_FILE = "intersections_xgb_0.7_WT1_WT2_WT3_coverage_3.tsv"
+INPUT_FILE = "merged_xgb_WT_KO_site_coverage_3.tsv"
 OUTPUT_ALL_FILE = "statistical_results_all.tsv"  # Generic name for both methods
 OUTPUT_SIG_FILE = "statistical_results_significant.tsv"  # Generic name for both methods
 
@@ -36,8 +36,8 @@ DISPLAY_COLUMNS = [
 def get_output_files():
     prefix = "wilcoxon" if USE_WILCOXON else "bootstrap"
     return (
-        f"{prefix}_xgb_0.7_WT_KO_results_all_3.tsv",
-        f"{prefix}_xgb_0.7_WT_KO_results_significant_3.tsv"
+        f"{prefix}_xgb_WT_KO_results_all_3.tsv",
+        f"{prefix}_xgb_WT_KO_results_significant_3.tsv"
     )
 
 OUTPUT_ALL_FILE, OUTPUT_SIG_FILE = get_output_files()

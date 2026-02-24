@@ -1,7 +1,7 @@
 import pandas as pd
 
-inputfile = "m6A_pos_on_genome_xgb_0.7_WT.tsv"
-outputfile = "intersections_m6A_sites_xgb_0.7_WT.tsv"
+inputfile = "m6A_pos_on_genome_xgb_HEK293T_WT3.tsv"
+outputfile = "intersections_m6A_sites_xgb_HEK293T_WT3.tsv"
 
 
 def readintsv(filename, field_to_group):
@@ -25,8 +25,8 @@ def find_interval_intersections(intervals):
     for interval in sorted_intervals[1:]:
         # Check for intersection
         if current_intersection[1] > interval[0]:
-#            print("interval",interval)
- #           print("intersection",current_intersection)
+            print("interval",interval)
+            print("intersection",current_intersection)
             count_intervals += 1
             if interval[2] == current_intersection[2]:
                 current_intersection = (max(current_intersection[0], interval[0]), min(current_intersection[1], interval[1]), interval[2])
